@@ -15,7 +15,7 @@ body {
 .header {        
     color: #0d4c89;
     position: relative;
-    height: 120px;
+    height: 170px;
     top: 0;
     left: 0;
     right: 0;
@@ -33,52 +33,63 @@ body {
     text-align: center;
 }
 
+.col-12 {     /*검색창*/
+    position: absolute; /* 절대 위치 지정 */
+    top: 115px; 
+    left: 39%;
+    width: 250px;
+    /* transform: translateX(-50%); */
+}
+
+.text-end {    /*검색버튼*/
+    position: absolute; /* 절대 위치 지정 */
+    top: 115px; 
+    left: 58%;
+    /* transform: translateX(-50%); */
+}
+
 
 /*메인박스 (큰박스)*/
 .main_box {
     background-color: #e9eaec;
     color : black;
     position: relative;
-    height: 600px;
+    height: auto;
     margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3개의 열로 구성된 그리드 생성 */
+    gap: 10px; /* 각 카드 사이의 간격 설정 */
+    justify-content: center; /* 가로 중앙 정렬 */
 }
 
-.col-12 {
-    position: absolute; /* 절대 위치 지정 */
-    top: 10px; 
-    left: 36%;
-    /* transform: translateX(-50%); */
-}
-
-.text-end {
-    position: absolute; /* 절대 위치 지정 */
-    top: 10px; 
-    left: 57%;
-    /* transform: translateX(-50%); */
-}
+.card {
+    width: 80%;
+    max-width: 300px;
+    height: auto;
+    margin: 20px auto 0; 
+  }
 
 
 .card-title {
     text-align: center;
 }
 
-.rating {
-    width: 180px;
- }
- 
+.card-text {
+    margin-top : 10px;
+}
+
+ .rating {
+    width: 170px;
+    display: flex; /* 요소들을 가로로 배치하기 위해 Flexbox 사용 */
+    justify-items: center; /* 요소들을 세로 중앙 정렬 */
+  }
+  
+  .rating i {
+    margin-right: 5px; /* 별 아이콘 사이에 간격 추가 */
+  }
+
  .rating__star {
-    /* cursor: pointer; */
     color: #0d4c89;
  }
  
 
-
-
-
-/* .mycards {
-    width: 1200px;
-    margin: 20px auto 20px auto;
-} */
