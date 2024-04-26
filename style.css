@@ -44,7 +44,7 @@ body {
 .text-end {    /*검색버튼*/
     position: absolute; /* 절대 위치 지정 */
     top: 115px; 
-    left: 58%;
+    left: 57%;
     /* transform: translateX(-50%); */
 }
 
@@ -78,18 +78,36 @@ body {
     margin-top : 10px;
 }
 
- .rating {
-    width: 170px;
-    display: flex; /* 요소들을 가로로 배치하기 위해 Flexbox 사용 */
-    justify-items: center; /* 요소들을 세로 중앙 정렬 */
-  }
+.rating {
+width: 250x;
+display: flex; /* 요소들을 가로로 배치하기 위해 Flexbox 사용 */
+justify-items: center; /* 요소들을 세로 중앙 정렬 */
+}
   
-  .rating i {
-    margin-right: 5px; /* 별 아이콘 사이에 간격 추가 */
-  }
 
- .rating__star {
-    color: #0d4c89;
- }
+.rate1 {
+position: relative;
+color: #ddd;
+font-size: 30px;
+text-align: center;
+z-index: 1; /
+}
+
+.rating_star {
+color: #0d4c89;
+position: absolute;
+display: flex;
+left: 0;
+right: 0;
+overflow: hidden;
+pointer-events: none;
+top: 0; /* 부모 요소에 대해 상단에 위치하도록 설정 */
+z-index: 0; /* 겹치는 요소 중에 가장 아래에 위치하도록 설정 */
+}
  
+.vote_average{
+    margin: 10px;
+    margin-bottom: 5px;
+    text-align: center;
+ }
 
