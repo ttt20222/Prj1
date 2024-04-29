@@ -9,7 +9,7 @@ const options = {
 fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', options)     //api 정보 불러오기
   .then((response) => response.json())
   .then((response) => {
-    const mainBox = document.querySelector('.main_box');    //dom 사용
+    const mainBox = document.querySelector('.main_box');    
 
     response.results.forEach(result => {
       let original_title = result.original_title;
@@ -50,7 +50,6 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
     });
 
 
-    //해결방법 함수 지우고 html에도 onkeyup 빼고 자바에서 구현 키보드 누르면 => 시작 
 
     let inputBox = document.querySelector('.form-control');
 
@@ -72,6 +71,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
 
     });
 
+    
 
     //검색버튼 입력시 동일한 영화제목 보여줌
 
@@ -87,19 +87,32 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
         return; // 검색어가 없으면 이후 코드 실행 안 함
       }
 
+
+      //검색어와 일치 카드 보여주기
       for (let i = 0; i < item.length; i++) {
         let name = item[i].getElementsByClassName("card-title");
-        if (name[0].innerHTML.toUpperCase() === value) {
+
+        let findTitle = Array.from(name).find(title => title.innerHTML.toUpperCase() === value);
+
+        if(findTitle){
           item[i].style.display = "block";
           console.log(item[i]);
-        } else {
+        }else {
           item[i].style.display = "none";
         }
+
+
+        // if (name[0].innerHTML.toUpperCase() === value) {
+        //   item[i].style.display = "block";
+        //   console.log(item[i]);
+        // } else {
+        //   item[i].style.display = "none";
+        // }
       }
     }
+    
 
     const s_btn = document.getElementById("sbtn");   //버튼클릭
-
     s_btn.addEventListener("click", () => performSearch());   //버튼이벤트
 
 
