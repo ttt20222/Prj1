@@ -51,31 +51,31 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
 
 
 
-    let inputBox = document.querySelector('.form-control');
+    // let inputBox = document.querySelector('.form-control');
 
-    inputBox.addEventListener("keyup", () => {
+    // inputBox.addEventListener("keyup", () => {
 
-      let value = document.getElementById("value").value.toUpperCase();
-      let item = document.querySelectorAll(".card");
-      // console.log(value);
-      // console.log(item[0]);
+    //   let value = document.getElementById("value").value.toUpperCase();
+    //   let item = document.querySelectorAll(".card");
+    //   // console.log(value);
+    //   // console.log(item[0]);
 
-      for (let i = 0; i < item.length; i++) {
-        let name = item[i].getElementsByClassName("card-title");
-        if (name[0].innerHTML.toUpperCase().indexOf(value) > -1) {
-          item[i].style.display = "flex";
-        } else {
-          item[i].style.display = "none";
-        }
-      }
+    //   for (let i = 0; i < item.length; i++) {
+    //     let name = item[i].getElementsByClassName("card-title");
+    //     if (name[0].innerHTML.toUpperCase().indexOf(value) > -1) {
+    //       item[i].style.display = "flex";
+    //     } else {
+    //       item[i].style.display = "none";
+    //     }
+    //   }
 
-    });
+    // });
 
     
 
     //검색버튼 입력시 동일한 영화제목 보여줌
 
-    const performSearch = () => {
+    const performSearch = async () => {
       let value = document.getElementById("value").value.toUpperCase();
       let item = document.querySelectorAll(".card");
 
@@ -87,20 +87,20 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
         return; // 검색어가 없으면 이후 코드 실행 안 함
       }
 
-
+      let searchCount = 0;
       //검색어와 일치 카드 보여주기
       for (let i = 0; i < item.length; i++) {
         let name = item[i].getElementsByClassName("card-title");
 
         let findTitle = Array.from(name).find(title => title.innerHTML.toUpperCase() === value);
 
-        if(findTitle){
+        if(findTitle || name[0].innerHTML.toUpperCase().indexOf(value) > -1){
           item[i].style.display = "block";
-          console.log(item[i]);
+          // console.log(item[i]);
+          searchCount++;
         }else {
           item[i].style.display = "none";
         }
-
 
         // if (name[0].innerHTML.toUpperCase() === value) {
         //   item[i].style.display = "block";
@@ -109,16 +109,18 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
         //   item[i].style.display = "none";
         // }
       }
-    }
-    
 
-    const s_btn = document.getElementById("sbtn");   //버튼클릭
-    s_btn.addEventListener("click", () => performSearch());   //버튼이벤트
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      alert(`${searchCount}건이 검색되었습니다.`);
+    }
+
+
+    const searchButton = document.getElementById("sbtn");   //버튼클릭
+    searchButton.addEventListener("click", () => performSearch());   //버튼이벤트
 
 
     document.addEventListener("keypress", (event) => {    //엔터이벤트
       if (event.key === "Enter") {
-        // console.log(event);
         event.preventDefault(); // 기본 엔터 동작 방지
         performSearch();
       }
